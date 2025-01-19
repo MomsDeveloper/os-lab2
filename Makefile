@@ -7,6 +7,7 @@ OBJ_DIR = obj
 LIB_DIR = lib
 BIN_DIR = bin
 INC_DIR = include
+OUT_DIR = output
 
 SOURCES = $(SRC_DIR)/cache.c $(SRC_DIR)/file_operations.c
 OBJECTS = $(SOURCES:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
@@ -17,9 +18,6 @@ all: create_dirs $(LIBRARY) $(BENCHMARKS)
 
 $(LIBRARY): $(OBJECTS)
 	$(CC) $(LDFLAGS) -o $(LIBRARY) $(OBJECTS)
-
-# $(BENCHMARK): $(LIBRARY) $(SRC_DIR)/benchmark.c
-# 	$(CC) $(CFLAGS) -I$(INC_DIR) -o $(BENCHMARK) $(SRC_DIR)/benchmark.c -L$(LIB_DIR) -llab2
 
 $(BENCHMARKS): $(LIBRARY) $(SRC_DIR)/ema-sort-int.c $(SRC_DIR)/ema-with-cache.c
 	$(CC) $(CFLAGS) -I$(INC_DIR) -o $(BIN_DIR)/ema-sort-int $(SRC_DIR)/ema-sort-int.c
@@ -32,9 +30,14 @@ create_dirs:
 	mkdir -p $(OBJ_DIR) $(LIB_DIR)
 	mkdir -p $(BIN_DIR)
 
+profile: all 
+	./run_profiling.sh $(BIN_DIR)/ema-sort-int $(OUT_DIR)/ema-sort-int 1
+	./run_profiling.sh $(BIN_DIR)/ema-with-cache $(OUT_DIR)/output/ema-with-cache 1
+
 .PHONY: clean
 
 clean:
-	rm -rf $(OBJ_DIR)/*.o $(LIB_DIR)/liblab2.so
-	rm -rf $(BIN_DIR)/benchmark
+	rm -rf $(OBJ_DIR) $(LIB_DIR)
+	rm -rf $(BIN_DIR)
+	rm -rf $(OUT_DIR)
 
