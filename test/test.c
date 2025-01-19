@@ -9,8 +9,7 @@ void test_merge(){
 
     size_t numbers_size = sizeof(numbers_to_sort) / sizeof(int);
 
-    char *name = "./data/test_merge.bin";
-
+    char *name = "./output/test/test_merge.bin";
     FILE *f = fopen(name, "wb");
     size_t written = fwrite(numbers_to_sort, sizeof(int), numbers_size, f);
     if (written != numbers_size) {
@@ -41,7 +40,7 @@ void test_merge_2(){
 
     size_t numbers_size = sizeof(numbers_to_sort) / sizeof(int);
 
-    char *name = "./data/test_merge_2.bin";
+    char *name = "./output/test/test_merge_2.bin";
 
     FILE *f = fopen(name, "wb");
     size_t written = fwrite(numbers_to_sort, sizeof(int), numbers_size, f);
@@ -68,7 +67,7 @@ void test_merge_2(){
 }
 
 int main() {
-    test_merge();
     test_merge_2();
+    test_merge();
     return 0;
 }

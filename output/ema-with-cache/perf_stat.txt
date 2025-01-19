@@ -1,0 +1,22 @@
+# started on Sun Jan 19 04:55:05 2025
+
+
+ Performance counter stats for 'bin/ema-with-cache 1 output/ema-with-cache/file.bin':
+
+            276.09 msec task-clock:u                     #    0.806 CPUs utilized             
+                 0      context-switches:u               #    0.000 /sec                      
+            76,102      cache-misses:u                   #    9.38% of all cache refs           (50.98%)
+           811,426      cache-references:u               #    2.939 M/sec                       (48.58%)
+       872,403,524      instructions:u                   #    1.16  insn per cycle              (63.28%)
+       753,620,680      cycles:u                         #    2.730 GHz                         (62.86%)
+       399,885,307      L1-dcache-loads:u                #    1.448 G/sec                       (62.10%)
+         5,583,018      L1-dcache-load-misses:u          #    1.40% of all L1-dcache accesses   (62.88%)
+           472,325      LLC-loads:u                      #    1.711 M/sec                       (63.87%)
+            46,537      LLC-load-misses:u                #    9.85% of all LL-cache accesses    (48.74%)
+
+       0.342688083 seconds time elapsed
+
+       0.240602000 seconds user
+       0.035241000 seconds sys
+
+

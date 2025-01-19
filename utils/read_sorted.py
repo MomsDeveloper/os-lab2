@@ -1,4 +1,5 @@
 filename = "./output/ema-with-cache/file.bin"
+
 symbol_storage = 4
 
 with open(filename, 'rb') as f:

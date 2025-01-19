@@ -8,6 +8,7 @@
 #include <unistd.h>
 #include <time.h>
 #include "file_operations.h"
+#include "ema-with-cache.h"
 
 #define BUFFER_SIZE 1024
 
@@ -192,7 +193,7 @@ void simple_merging_sort(char *name) {
     remove(f2_name);
 }
 
-// #ifdef BENCH2_MAIN
+#ifdef BENCH2_MAIN
 int main(int argc, char *argv[]) {
   if (argc != 3) {
     printf("Usage: %s <number_of_iterations> <file_name>\n", argv[0]);
@@ -204,8 +205,7 @@ int main(int argc, char *argv[]) {
 
   for (int i = 0; i < number_of_iterations; i++) {
     simple_merging_sort(filename);
-    // printf("Iteration %d done\n", i);
   }
   return 0;
 }
-// #endif
+#endif

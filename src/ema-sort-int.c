@@ -171,9 +171,6 @@ void simple_merging_sort(char *name) {
 
     merge(f, f1, f2, k, a1, a2, index_f1_write_buffer, index_f2_write_buffer);
 
-    // close(f2);
-    // close(f1);
-    // close(f);
     lseek(f2, 0, SEEK_SET);
     lseek(f1, 0, SEEK_SET);
     lseek(f, 0, SEEK_SET);
@@ -189,7 +186,7 @@ void simple_merging_sort(char *name) {
   remove(f2_name);
 }
 
-// #ifdef BENCH1_MAIN
+#ifdef BENCH1_MAIN
 int main(int argc, char *argv[]) {
   if (argc != 3) {
     printf("Usage: %s <number_of_iterations> <file_name>\n", argv[0]);
@@ -201,8 +198,7 @@ int main(int argc, char *argv[]) {
 
   for (int i = 0; i < number_of_iterations; i++) {
     simple_merging_sort(filename);
-    // printf("Iteration %d done\n", i);
   }
   return 0;
 }
-// #endif // BENCH1_MAIN
+#endif // BENCH1_MAIN
