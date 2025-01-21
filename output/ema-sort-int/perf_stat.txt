@@ -1,22 +1,22 @@
-# started on Sat Jan 18 21:09:19 2025
+# started on Sun Jan 19 04:54:46 2025
 
 
- Performance counter stats for './bin/ema-sort-int 1 ./output/ema-sort-int/file.bin':
+ Performance counter stats for 'bin/ema-sort-int 1 output/ema-sort-int/file.bin':
 
-            840.36 msec task-clock:u                     #    0.410 CPUs utilized             
+            875.53 msec task-clock:u                     #    0.409 CPUs utilized             
                  0      context-switches:u               #    0.000 /sec                      
-           417,546      cache-misses:u                   #   34.21% of all cache refs           (48.27%)
-         1,220,667      cache-references:u               #    1.453 M/sec                       (48.63%)
-       820,991,141      instructions:u                   #    1.24  insn per cycle              (63.51%)
-       661,443,852      cycles:u                         #    0.787 GHz                         (61.23%)
-       343,773,415      L1-dcache-loads:u                #  409.080 M/sec                       (63.43%)
-         1,600,588      L1-dcache-load-misses:u          #    0.47% of all L1-dcache accesses   (64.89%)
-           600,283      LLC-loads:u                      #  714.318 K/sec                       (65.22%)
-           193,514      LLC-load-misses:u                #   32.24% of all LL-cache accesses    (48.34%)
+           454,489      cache-misses:u                   #   37.62% of all cache refs           (50.25%)
+         1,208,238      cache-references:u               #    1.380 M/sec                       (54.41%)
+       822,916,777      instructions:u                   #    1.25  insn per cycle              (63.75%)
+       659,172,659      cycles:u                         #    0.753 GHz                         (60.84%)
+       340,011,666      L1-dcache-loads:u                #  388.352 M/sec                       (62.54%)
+         1,590,800      L1-dcache-load-misses:u          #    0.47% of all L1-dcache accesses   (62.36%)
+           542,215      LLC-loads:u                      #  619.302 K/sec                       (60.44%)
+           216,079      LLC-load-misses:u                #   39.85% of all LL-cache accesses    (49.16%)
 
-       2.047379019 seconds time elapsed
+       2.142339232 seconds time elapsed
 
-       0.321278000 seconds user
-       0.565180000 seconds sys
+       0.354455000 seconds user
+       0.561897000 seconds sys
 
 

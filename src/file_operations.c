@@ -21,8 +21,26 @@ int lab2_open(const char *path) {
 
 int lab2_close(int fd) {
     lab2_fsync(fd);
+    
+    CacheEntry *entry = cache.entries;
+    CacheEntry *prev = NULL;
+    while (entry) {
+        if (entry->fd == fd) {
+            if (prev) {
+                prev->next = entry->next;
+            } else {
+                cache.entries = entry->next;
+            }
+            CacheEntry *to_free = entry;
+            entry = entry->next;
+            free(to_free->data);
+            free(to_free);
+        } else {
+            prev = entry;
+            entry = entry->next;
+        }
+    }
     return close(fd);
-
 }
 
 ssize_t lab2_read(int fd, void *buf, size_t count) {

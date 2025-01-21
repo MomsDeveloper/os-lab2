@@ -8,6 +8,7 @@
 #include <unistd.h>
 #include <time.h>
 #include "file_operations.h"
+#include "ema-with-cache.h"
 
 #define BUFFER_SIZE 1024
 
@@ -62,9 +63,6 @@ void merge(int f, int f1, int f2, int k, int a1, int a2, size_t f1_size, size_t 
     size_t index_write_buffer = 0;
 
     int *buffer_read_f1, *buffer_read_f2, *buffer_write;
-    // posix_memalign((void **)&buffer_read_f1, ALIGNMENT, BUFFER_SIZE * sizeof(int));
-    // posix_memalign((void **)&buffer_read_f2, ALIGNMENT, BUFFER_SIZE * sizeof(int));
-    // posix_memalign((void **)&buffer_write, ALIGNMENT, BUFFER_SIZE * sizeof(int));
     buffer_read_f1 = (int *)malloc(BUFFER_SIZE * sizeof(int));
     buffer_read_f2 = (int *)malloc(BUFFER_SIZE * sizeof(int));
     buffer_write = (int *)malloc(BUFFER_SIZE * sizeof(int));
@@ -139,19 +137,12 @@ void simple_merging_sort(char *name) {
 
     k = 1;
     while (k < kol) {
-        // f = open_file(name, O_RDONLY, 0);
-        // f1 = open_file(f1_name, O_WRONLY | O_CREAT | O_TRUNC, 0644);
-        // f2 = open_file(f2_name, O_WRONLY | O_CREAT | O_TRUNC, 0644);
-
         size_t index_f_read_buffer = 0;
 
         size_t index_f1_write_buffer = 0;
         size_t index_f2_write_buffer = 0;
 
         int *buffer_read, *buffer_write_f1, *buffer_write_f2;
-        // posix_memalign((void **)&buffer_read, ALIGNMENT, BUFFER_SIZE * sizeof(int));
-        // posix_memalign((void **)&buffer_write_f1, ALIGNMENT, BUFFER_SIZE * sizeof(int));
-        // posix_memalign((void **)&buffer_write_f2, ALIGNMENT, BUFFER_SIZE * sizeof(int));
         buffer_read = (int *)malloc(BUFFER_SIZE * sizeof(int));
         buffer_write_f1 = (int *)malloc(BUFFER_SIZE * sizeof(int));
         buffer_write_f2 = (int *)malloc(BUFFER_SIZE * sizeof(int));
@@ -179,22 +170,13 @@ void simple_merging_sort(char *name) {
         free(buffer_read);
         free(buffer_write_f1);
         free(buffer_write_f2);
-        // lab2_close(f1);
-        // lab2_close(f2);
-        // lab2_close(f);
+
         lseek(f1, 0, SEEK_SET);
         lseek(f2, 0, SEEK_SET);
         lseek(f, 0, SEEK_SET);
 
-
-        // f = open_file(name, O_WRONLY, 0);
-        // f1 = open_file(f1_name, O_RDONLY, 0);
-        // f2 = open_file(f2_name, O_RDONLY, 0);
-
         merge(f, f1, f2, k, a1, a2, index_f1_write_buffer, index_f2_write_buffer);
-        // lab2_close(f2);
-        // lab2_close(f1);
-        // lab2_close(f);
+
         lseek(f, 0, SEEK_SET);
         lseek(f1, 0, SEEK_SET);
         lseek(f2, 0, SEEK_SET);
@@ -211,7 +193,7 @@ void simple_merging_sort(char *name) {
     remove(f2_name);
 }
 
-// #ifdef BENCH2_MAIN
+#ifdef BENCH2_MAIN
 int main(int argc, char *argv[]) {
   if (argc != 3) {
     printf("Usage: %s <number_of_iterations> <file_name>\n", argv[0]);
@@ -223,8 +205,7 @@ int main(int argc, char *argv[]) {
 
   for (int i = 0; i < number_of_iterations; i++) {
     simple_merging_sort(filename);
-    // printf("Iteration %d done\n", i);
   }
   return 0;
 }
-// #endif
+#endif

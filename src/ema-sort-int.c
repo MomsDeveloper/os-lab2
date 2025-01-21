@@ -134,10 +134,6 @@ void simple_merging_sort(char *name) {
   k = 1;
   while (k < kol) {
 
-    // f = open_file(name, O_RDONLY, 0);
-    // f1 = open_file(f1_name, O_WRONLY | O_CREAT | O_TRUNC, 0644);
-    // f2 = open_file(f2_name, O_WRONLY | O_CREAT | O_TRUNC, 0644);
-
     size_t index_f_read_buffer = 0;
 
     size_t index_f1_write_buffer = 0;
@@ -169,22 +165,12 @@ void simple_merging_sort(char *name) {
     free(buffer_write_f1);
     free(buffer_write_f2);
 
-    // close(f1);
-    // close(f2);
-    // close(f);
     lseek(f1, 0, SEEK_SET);
     lseek(f2, 0, SEEK_SET);
     lseek(f, 0, SEEK_SET);
 
-    // f = open_file(name, O_WRONLY, 0);
-    // f1 = open_file(f1_name, O_RDONLY, 0);
-    // f2 = open_file(f2_name, O_RDONLY, 0);
-
     merge(f, f1, f2, k, a1, a2, index_f1_write_buffer, index_f2_write_buffer);
 
-    // close(f2);
-    // close(f1);
-    // close(f);
     lseek(f2, 0, SEEK_SET);
     lseek(f1, 0, SEEK_SET);
     lseek(f, 0, SEEK_SET);
@@ -200,7 +186,7 @@ void simple_merging_sort(char *name) {
   remove(f2_name);
 }
 
-// #ifdef BENCH1_MAIN
+#ifdef BENCH1_MAIN
 int main(int argc, char *argv[]) {
   if (argc != 3) {
     printf("Usage: %s <number_of_iterations> <file_name>\n", argv[0]);
@@ -212,8 +198,7 @@ int main(int argc, char *argv[]) {
 
   for (int i = 0; i < number_of_iterations; i++) {
     simple_merging_sort(filename);
-    // printf("Iteration %d done\n", i);
   }
   return 0;
 }
-// #endif // BENCH1_MAIN
+#endif // BENCH1_MAIN
